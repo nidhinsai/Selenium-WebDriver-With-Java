@@ -13,9 +13,19 @@
    * Some important libraries:
      * https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
      * https://mvnrepository.com/artifact/org.testng/testng
+
 2. **Exclude Unnecessary Files**
    * Add a .gitignore file to specify files and directories that should be ignored and not tracked by the version control system. It allows us to exclude certain files from being committed to the repository. (You will find .gitignore file created by default under your project)
    * In the .gitignore file add the files and directories you want to be excluded.
+
+3. **Commit and Push the changes**
+   * Press CONTROL+K
+   * Commit window will be opened.
+   * Click on each file listed in the commit window and verify the changes.
+   * Select files you want to commit by clicking on the checkboxes.
+   * Add a commit message in the text box.
+   * After selecting the files, click Commit and Push (Otherwise you can commit first then go to Git > Push or press CONTROL+SHIFT+K to push all the commits)
+
 ---
 
 Please refer commit - Project Initialization : https://github.com/nidhinsai/Selenium-WebDriver-With-Java/commit/435f31d463273a9f9169c43e8928f98d69d77134

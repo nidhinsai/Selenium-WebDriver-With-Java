@@ -1,0 +1,16 @@
+### Selenium WebDriver With Java Training
+
+1. **Initialize WebDriver Instance**
+   * There are multiple ways to manage WebDriver Instances in your project.
+     * Singleton Pattern:  A simple utility class which acts as a Singleton for managing the WebDriver instance. The pattern ensures that you have a single instance of WebDriver throughout the test execution. It's a common approach to centralize WebDriver management and configurations. However. Having a single class handling WebDriver initialization and access provides a centralized point for managing browser sessions across the project. However, the use of static variables and methods can lead to potential issues in parallel testing environments where multiple tests might interfere with each other when manipulating the shared static state. Also, the class's direct dependencies on WebDriver and test-specific configurations like timeouts might limit its reuse in different projects or testing frameworks. 
+     * Dependency Injection (DI): Dependency Injection (DI) is a design pattern used to create more maintainable and modular code by injecting dependencies into classes rather than letting the classes create their dependencies. This approach allows better control over object lifecycles and reduces static dependencies. 
+     * ThreadLocal WebDriver: Utilize the ThreadLocal pattern to maintain a separate instance of WebDriver per thread. This helps prevent conflicts in parallel test execution. 
+     * Page Object Factory: Combine WebDriver initialization with the Page Object Factory pattern, where each Page Object class is responsible for its WebDriver instance. This allows more granular control and encapsulation. 
+     * Abstracting Configurations: Externalize browser configurations (like timeouts, browser types, etc.) into configuration files (e.g., properties, YAML, JSON) and use a separate class for configuration handling.
+   * The WebDriverProvider class in this project incorporates multiple design patterns. The class follows a form of dependency injection. It injects the WebDriver instance into the class using the constructor.
+   * The initializeDriver method acts as a factory method. It encapsulates the logic for creating different types of WebDriver instances (ChromeDriver or FirefoxDriver) based on the specified browser type.
+   * While not a traditional singleton, the WebDriverProvider class ensures that only one WebDriver instance is created per object instance. The driver field is initialized only once and is then used throughout the object's lifecycle.
+   * This open source project automated driver management and other helper features for Selenium WebDriver in Java: https://github.com/bonigarcia/webdrivermanager. We are using this as a dependency to manage our WebDriver executables.
+   * Maven repository link for WebDriverManager https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager.
+   * Find the latest stable WebDriverManager version and add it as dependency in your pom.xml file.
+   * Refer the below commit for the implementation of WebDriverProvider class: https://github.com/nidhinsai/Selenium-WebDriver-With-Java/commit/44cab384ea125af3f3dd40a65f7365ed159b6c26

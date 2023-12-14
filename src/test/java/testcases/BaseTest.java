@@ -10,7 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 public class BaseTest {
-    private static WebDriver driver;
+    protected static WebDriver driver;
     private static WebDriverProvider webDriverProvider;
 
     /**
@@ -20,7 +20,7 @@ public class BaseTest {
      */
     @BeforeClass(alwaysRun = true)
     protected void classSetup() {
-        webDriverProvider = new WebDriverProvider("safari");
+        webDriverProvider = new WebDriverProvider("chrome");
         driver = webDriverProvider.getDriver();
     }
 

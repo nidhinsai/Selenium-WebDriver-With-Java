@@ -11,6 +11,7 @@ public class HomePage {
     private final WebDriver driver;
     private final By formAuthenticationLink = By.linkText("Form Authentication");
     private final By dropdownLink = By.linkText("Dropdown");
+    private final By contextMenuLink = By.linkText("Context Menu");
 
     /**
      * Constructor to initialize HomePage with WebDriver
@@ -39,5 +40,15 @@ public class HomePage {
     public DropdownPage clickDropDown() {
         driver.findElement(dropdownLink).click();
         return new DropdownPage(driver);
+    }
+
+    /**
+     * Clicks the 'Context Menu' link on the Home Page
+     *
+     * @return ContextMenuPage object representing the Context Menu page
+     */
+    public ContextMenuPage clickContextMenu() {
+        driver.findElement(contextMenuLink).click();
+        return new ContextMenuPage(driver);
     }
 }

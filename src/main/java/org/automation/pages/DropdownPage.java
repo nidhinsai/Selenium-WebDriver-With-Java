@@ -1,5 +1,6 @@
 package org.automation.pages;
 
+import org.automation.enums.DropdownOptions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,10 +28,10 @@ public class DropdownPage {
      *
      * @param option The text of the option to be selected
      */
-    public void selectFromDropDown(String option) {
+    public void selectFromDropDown(DropdownOptions option) {
         WebElement dropdownElement = driver.findElement(dropdown);
         Select dropdownSelect = new Select(dropdownElement);
-        dropdownSelect.selectByVisibleText(option);
+        dropdownSelect.selectByVisibleText(option.getOption());
     }
 
     /**

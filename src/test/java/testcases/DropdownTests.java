@@ -1,7 +1,9 @@
 package testcases;
 
+import org.automation.enums.DropdownOptions;
 import org.automation.pages.DropdownPage;
 import org.automation.pages.HomePage;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -12,14 +14,25 @@ import static org.testng.Assert.assertEquals;
 public class DropdownTests extends BaseTest {
 
     /**
-     * Tests the selection of an option from the dropdown
+     * Provides test data for the dropdown options
+     *
+     * @return A 2D array containing DropdownOptions.OPTION_1 and DropdownOptions.OPTION_2
      */
-    @Test
-    public void testDropdownSelection() {
+    @DataProvider(name = "dropdownOptionsTestData")
+    public Object[][] dropdownOptions() {
+        return new Object[][]{{DropdownOptions.OPTION_1}, {DropdownOptions.OPTION_2}};
+    }
+
+    /**
+     * Tests the selection of an option from the dropdown
+     *
+     * @param option The DropdownOptions enum value representing the option to select
+     */
+    @Test(dataProvider = "dropdownOptionsTestData")
+    public void testDropdownSelection(DropdownOptions option) {
         HomePage homePage = new HomePage(driver);
         DropdownPage dropDownPage = homePage.clickDropDown();
-        String option = "Option 1";
         dropDownPage.selectFromDropDown(option);
-        assertEquals(dropDownPage.getSelectedOption(), option, "Incorrect option selected");
+        assertEquals(dropDownPage.getSelectedOption(), option.getOption(), "Incorrect option selected");
     }
 }

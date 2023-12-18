@@ -8,6 +8,7 @@ import org.automation.helpers.WebDriverProvider;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
     protected static WebDriver driver;
@@ -22,6 +23,14 @@ public class BaseTest {
     protected void classSetup() {
         webDriverProvider = new WebDriverProvider("chrome");
         driver = webDriverProvider.getDriver();
+    }
+
+    /**
+     * Opens the test URL before each test method
+     */
+    @BeforeMethod()
+    public void openTestUrl() {
+        openUrl("https://the-internet.herokuapp.com");
     }
 
     /**

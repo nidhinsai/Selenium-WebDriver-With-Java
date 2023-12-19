@@ -32,7 +32,7 @@ public class BaseTest {
      * Opens the test URL before each test method
      */
     @BeforeMethod()
-    public void openTestUrl() {
+    protected void openTestUrl() {
         openUrl("https://the-internet.herokuapp.com");
     }
 
@@ -52,5 +52,14 @@ public class BaseTest {
      */
     protected void openUrl(String url) {
         driver.get(url);
+    }
+
+    /**
+     * Provides access to the WebDriver instance.
+     *
+     * @return the WebDriver instance.
+     */
+    protected WebDriver getDriver() {
+        return webDriverProvider.getDriver();
     }
 }

@@ -5,14 +5,16 @@
 package testcases;
 
 import org.automation.helpers.WebDriverProvider;
+import org.automation.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
-    protected static WebDriver driver;
+    private static WebDriver driver;
     private static WebDriverProvider webDriverProvider;
+    protected static HomePage homePage;
 
     /**
      * Initializes the WebDriver instance before the test class execution.
@@ -23,6 +25,7 @@ public class BaseTest {
     protected void classSetup() {
         webDriverProvider = new WebDriverProvider("chrome");
         driver = webDriverProvider.getDriver();
+        homePage = new HomePage(driver);
     }
 
     /**

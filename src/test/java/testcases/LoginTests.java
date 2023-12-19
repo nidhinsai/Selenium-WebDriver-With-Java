@@ -1,6 +1,5 @@
 package testcases;
 
-import org.automation.pages.HomePage;
 import org.automation.pages.LoginPage;
 import org.automation.pages.SecureAreaPage;
 import org.testng.annotations.Test;
@@ -17,7 +16,6 @@ public class LoginTests extends BaseTest {
      */
     @Test()
     public void testSuccessfulLogin() {
-        HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.clickFormAuthentication();
         loginPage.setUsername("tomsmith");
         loginPage.setPassword("SuperSecretPassword!");

@@ -2,7 +2,6 @@ package testcases;
 
 import org.automation.enums.DropdownOptions;
 import org.automation.pages.DropdownPage;
-import org.automation.pages.HomePage;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -30,7 +29,6 @@ public class DropdownTests extends BaseTest {
      */
     @Test(dataProvider = "dropdownOptionsTestData")
     public void testDropdownSelection(DropdownOptions option) {
-        HomePage homePage = new HomePage(driver);
         DropdownPage dropDownPage = homePage.clickDropDown();
         dropDownPage.selectFromDropDown(option);
         assertEquals(dropDownPage.getSelectedOption(), option.getOption(), "Incorrect option selected");

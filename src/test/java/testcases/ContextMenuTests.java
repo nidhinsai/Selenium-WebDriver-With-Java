@@ -1,7 +1,6 @@
 package testcases;
 
 import org.automation.pages.ContextMenuPage;
-import org.automation.pages.HomePage;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -15,7 +14,6 @@ public class ContextMenuTests extends BaseTest {
      */
     @Test
     public void testRightClick() {
-        HomePage homePage = new HomePage(driver);
         ContextMenuPage contextMenuPage = homePage.clickContextMenu();
         contextMenuPage.contextClickInTheBox();
 

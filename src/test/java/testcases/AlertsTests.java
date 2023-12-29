@@ -5,15 +5,24 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+/**
+ * Test class for handling various alerts using JavaScriptAlertsPage.
+ */
 public class AlertsTests extends BaseTest {
 
     private JavaScriptAlertsPage alertsPage;
 
+    /**
+     * Method to set up the alerts page before each test method.
+     */
     @BeforeMethod
     public void setUp() {
         alertsPage = homePage.clickJavaScriptAlerts();
     }
 
+    /**
+     * Test method to validate closing a JavaScript Alert.
+     */
     @Test
     public void testCloseJSAlert() {
         alertsPage.clickJSAlert();
@@ -24,6 +33,9 @@ public class AlertsTests extends BaseTest {
         softAssert.assertAll();
     }
 
+    /**
+     * Test method to validate accepting a JavaScript Confirm.
+     */
     @Test
     public void testAcceptJSConfirm() {
         alertsPage.clickJSConfirm();
@@ -34,6 +46,9 @@ public class AlertsTests extends BaseTest {
         softAssert.assertAll();
     }
 
+    /**
+     * Test method to validate dismissing a JavaScript Confirm.
+     */
     @Test
     public void testDismissJSConfirm() {
         alertsPage.clickJSConfirm();
@@ -44,6 +59,9 @@ public class AlertsTests extends BaseTest {
         softAssert.assertAll();
     }
 
+    /**
+     * Test method to validate entering text in a JavaScript Prompt.
+     */
     @Test
     public void testEnterTextInJSPrompt() {
         alertsPage.clickJSPrompt();
@@ -56,6 +74,9 @@ public class AlertsTests extends BaseTest {
         softAssert.assertAll();
     }
 
+    /**
+     * Test method to validate canceling a JavaScript Prompt.
+     */
     @Test
     public void testCancelJSPrompt() {
         alertsPage.clickJSPrompt();
@@ -65,5 +86,4 @@ public class AlertsTests extends BaseTest {
         softAssert.assertEquals(alertsPage.getResultText(), "You entered: null", "Incorrect result message");
         softAssert.assertAll();
     }
-
 }

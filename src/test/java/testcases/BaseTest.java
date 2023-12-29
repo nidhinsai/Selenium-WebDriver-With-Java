@@ -60,6 +60,6 @@ public class BaseTest {
      * @return the WebDriver instance.
      */
     protected WebDriver getDriver() {
-        return webDriverProvider.getDriver();
+        return driver;
     }
 }

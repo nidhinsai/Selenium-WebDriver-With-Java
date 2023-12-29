@@ -12,6 +12,7 @@ public class HomePage {
     private final By formAuthenticationLink = By.linkText("Form Authentication");
     private final By dropdownLink = By.linkText("Dropdown");
     private final By contextMenuLink = By.linkText("Context Menu");
+    private final By javaScriptAlertsLink = By.linkText("JavaScript Alerts");
 
     /**
      * Constructor to initialize HomePage with WebDriver
@@ -50,5 +51,15 @@ public class HomePage {
     public ContextMenuPage clickContextMenu() {
         driver.findElement(contextMenuLink).click();
         return new ContextMenuPage(driver);
+    }
+
+    /**
+     * Clicks the 'JavaScript Alerts' link on the Home Page
+     *
+     * @return JavaScriptAlertsPage object representing the JavaScript Alerts page
+     */
+    public JavaScriptAlertsPage clickJavaScriptAlerts() {
+        driver.findElement(javaScriptAlertsLink).click();
+        return new JavaScriptAlertsPage(driver);
     }
 }

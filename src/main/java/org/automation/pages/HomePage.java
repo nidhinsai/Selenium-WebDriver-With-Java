@@ -14,6 +14,7 @@ public class HomePage {
     private final By contextMenuLink = By.linkText("Context Menu");
     private final By javaScriptAlertsLink = By.linkText("JavaScript Alerts");
     private final By fileUploadLink = By.linkText("File Upload");
+    private final By entryAdLink = By.linkText("Entry Ad");
 
     /**
      * Constructor to initialize HomePage with WebDriver
@@ -72,5 +73,15 @@ public class HomePage {
     public FileUploadPage clickFileUpload() {
         driver.findElement(fileUploadLink).click();
         return new FileUploadPage(driver);
+    }
+
+    /**
+     * Clicks the 'Entry Ad' link on the Home Page
+     *
+     * @return EntryAdPage object representing the Entry Ad page
+     */
+    public EntryAdPage clickEntryAd() {
+        driver.findElement(entryAdLink).click();
+        return new EntryAdPage(driver);
     }
 }

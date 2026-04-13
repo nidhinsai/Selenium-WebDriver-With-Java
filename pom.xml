@@ -1,43 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ============================================================
+  TRAINING NOTE — pom.xml (Project Object Model)
+  ============================================================
+  This file is the heart of a Maven project. It defines:
+    • Project identity (groupId, artifactId, version)
+    • Java version to compile against (properties)
+    • External library dependencies and their versions
+    • Build plugins
+
+  Maven uses this file to automatically download the declared
+  dependencies from Maven Central and compile/run the project.
+  ============================================================
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- ── Project Coordinates ──────────────────────────────────────────── -->
+    <!--
+      groupId    : reverse-domain naming convention for your organisation
+      artifactId : the name of this project/module
+      version    : semantic versioning — SNAPSHOT = work in progress
+    -->
     <groupId>org.automation</groupId>
     <artifactId>Selenium-WebDriver-With-Java</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- ── Properties ───────────────────────────────────────────────────── -->
+    <!--
+      TRAINING NOTE — Centralise version numbers here so you only need to
+      update them in one place. Reference them with ${property.name}.
+    -->
     <properties>
+        <!-- Java version: IntelliJ / javac will use Java 21 language features -->
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Dependency versions — change here to upgrade everywhere -->
+        <selenium.version>4.20.0</selenium.version>
+        <testng.version>7.10.1</testng.version>
+        <webdrivermanager.version>5.8.0</webdrivermanager.version>
     </properties>
 
+    <!-- ── Dependencies ─────────────────────────────────────────────────── -->
     <dependencies>
 
-        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+        <!--
+          SELENIUM JAVA
+          ─────────────
+          The main Selenium library. Includes bindings for all browsers,
+          the WebDriver API (finding elements, clicking, typing, etc.),
+          the Actions API (drag-and-drop, key chords, hover), and more.
+
+          🔗 https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+        -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.16.0</version>
+            <version>${selenium.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+        <!--
+          TESTNG
+          ──────
+          The test framework used to organise, run and report test results.
+          Key TestNG features used in this project:
+            • @Test              — marks a method as a test
+            • @BeforeClass       — runs once before all tests in the class
+            • @BeforeMethod      — runs before each individual test method
+            • @AfterClass        — runs once after all tests in the class
+            • @DataProvider      — supplies parametrised test data
+            • SoftAssert         — collects failures instead of stopping at first one
+            • testng.xml suites  — lets you group/filter which tests to run
+
+          scope=test means this library is only on the test classpath.
+          🔗 https://mvnrepository.com/artifact/org.testng/testng
+        -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.8.0</version>
+            <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+        <!--
+          WEBDRIVERMANAGER (by Boni Garcia)
+          ──────────────────────────────────
+          Automatically downloads and configures the correct browser driver
+          binary (chromedriver, geckodriver, etc.) for the current OS and
+          browser version. This removes the need to manually manage driver
+          executables and add them to your PATH.
+
+          Without it you would need:
+            System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
+          With it:
+            WebDriverManager.chromedriver().setup();   // that's it!
+
+          🔗 https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
+        -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.6.2</version>
+            <version>${webdrivermanager.version}</version>
         </dependency>
 
     </dependencies>
+
+    <!-- ── Build ────────────────────────────────────────────────────────── -->
+    <!--
+      TRAINING NOTE — maven-surefire-plugin runs the tests.
+      By default it looks for classes matching *Test*.java.
+      Setting 'suiteXmlFiles' overrides this to run a specific testng.xml,
+      which lets you control exactly which tests and in what order.
+    -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <!-- To run a single suite:  mvn test -Dsuite=LoginTests -->
+                    <suiteXmlFiles>
+                        <suiteXmlFile>
+                            src/test/resources/test-xml/AllTests.xml
+                        </suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

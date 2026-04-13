@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!-- TRAINING NOTE: Run a single suite file with:
+     mvn test -Dsuite=FileUploadTests -->
+<suite name="File Upload Suite" verbose="1">
+    <test name="File Upload Tests">
+        <classes>
+            <class name="testcases.FileUploadTests"/>
+        </classes>
+    </test>
+</suite>

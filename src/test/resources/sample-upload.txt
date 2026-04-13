@@ -1,0 +1,4 @@
+This is a sample file used by FileUploadTests.
+It exists so the test can upload a real file without relying on a
+machine-specific path. The content itself is not verified — only the
+filename shown on the confirmation page matters.
